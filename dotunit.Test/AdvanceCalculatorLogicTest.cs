@@ -9,20 +9,13 @@ namespace dotunit.Test
         [Fact]
         public void AddTwiceTest()
         {
-            int a = 1;
-            int b = 2;
-            int logicExpectedA = 1;
-            int logicExpectedB = 2;
-            int result = 3;
-            int expected = 6;
             var _calculatorLogic = new Mock<ICalculatorLogic>();
-            _calculatorLogic.Setup(f => f.Add(It.Is<int>(numa => numa == logicExpectedA), It.Is<int>(numb => numb == logicExpectedB)))
-                            .Returns(result);
+
+            _calculatorLogic.Setup(f => f.Add(1,2)).Returns(3);
 
             AdvanceCalculatorLogic _advanceCalculatorLogic = new AdvanceCalculatorLogic(_calculatorLogic.Object);
-
-
-            Assert.Equal(expected, _advanceCalculatorLogic.AddTwice(a, b));
+            
+            Assert.Equal(6, _advanceCalculatorLogic.AddTwice(1, 2));
         }
 
         [Theory]
